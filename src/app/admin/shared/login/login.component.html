@@ -1,0 +1,45 @@
+<!-- <main>
+  <div class="container">
+    <p-toast />
+    <section class="section register min-vh-50 d-flex flex-column align-items-center justify-content-center py-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-5 d-flex flex-column align-items-center justify-content-center">
+            <div class="card mb-0 shadow border border-0 p-md-5">
+              <div class="card-body">
+                <div class="p-0">
+                  <h5 class="card-title text-center">مرحبا بك يا مشرف</h5>
+                  <p class="text-center">ادخل البريد الإلكتروني و كلمة المرور الخاص بيك</p>
+                </div>
+                <form class="row gy-2 gx-3 needs-validation" [formGroup]="adminLoginForm"
+                  (ngSubmit)="adminLogin(adminLoginForm)">
+                  <div class="col-12">
+                    <label for="email" class="form-label">البريد الإلكتروني</label>
+                    <div class="input-group has-validation">
+                      <input type="email" formControlName="email"
+                        [ngClass]="{'is-invalid':(adminLoginForm.controls.email.touched && adminLoginForm.controls.email.errors) }"
+                        name="email" class="form-control" id="email" required>
+                      <div class="invalid-feedback">برجاء إدخال البريد الإلكتروني</div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label for="password" class="form-label">كلمة المرور</label>
+                    <input type="password" formControlName="password"
+                      [ngClass]="{'is-invalid':(adminLoginForm.controls.password.touched && adminLoginForm.controls.password.errors) }"
+                      name="password" class="form-control" id="password" required>
+                    <div class="invalid-feedback">برجاء إدخال كلمة المرور</div>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn w-100" [disabled]="adminLoginForm.invalid" type="submit">سجل
+                      الآن</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main> -->

@@ -1,0 +1,65 @@
+
+
+.loadingText {
+  text-align: center;
+  font-size: 30px;
+  font-family: var(--heading-font);
+  color: color-mix(in srgb, var(--accent-color), transparent 50%);
+  direction: rtl;
+  font-weight: bold;
+}
+
+/* End Admin Style */
+
+
+
+
+@media screen and (max-width: 768px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+
+.page-title {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.page-title .breadcrumbs {
+  margin-bottom: 1.5rem;
+}
+
+.page-title .breadcrumbs .breadcrumb {
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background: none;
+}
+
+.page-title .breadcrumbs .breadcrumb .breadcrumb-item {
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+
+
+section,
+.section {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  padding: 50px 0;
+  scroll-margin-top: 90px;
+  overflow: clip;
+  direction: rtl;
+
+}
+
+@media (max-width: 1199px) {
+
+  section,
+  .section {
+    scroll-margin-top: 66px;
+  }
+}
+

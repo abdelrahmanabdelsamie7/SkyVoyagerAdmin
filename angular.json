@@ -27,9 +27,21 @@
               }
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "./public/assets/css/main.css",
+              "./public/assets/vendor/bootstrap-icons/bootstrap-icons.css",
+              "./public/assets/vendor/aos/aos.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/animate.css/animate.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "./public/assets/vendor/aos/aos.js",
+              "./public/assets/js/main.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -50,7 +62,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -92,5 +110,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
