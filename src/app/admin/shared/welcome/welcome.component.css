@@ -1,0 +1,15 @@
+h2 {
+  margin: 15px 0px 40px 0px;
+  font-weight: 700;
+  text-align: center;
+}
+
+h2 span {
+  color: var(--accent-color);
+}
+
+@media screen and (max-width:576px) {
+  img {
+    width: 500px;
+  }
+}

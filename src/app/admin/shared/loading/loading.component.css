@@ -1,0 +1,7 @@
+.loadingText {
+  text-align: center;
+  font-size: 30px;
+  font-family: var(--heading-font);
+  color: color-mix(in srgb, var(--accent-color), transparent 50%);
+  font-weight: bold;
+}

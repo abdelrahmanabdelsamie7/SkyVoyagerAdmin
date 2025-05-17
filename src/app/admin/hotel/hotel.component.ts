@@ -5,11 +5,13 @@ import { Hotel } from '../../core/interfaces/hotel';
 import { HotelService } from '../../core/services/hotel.service';
 import { MessageService } from 'primeng/api';
 import { Toast } from 'primeng/toast';
+import { LoadingComponent } from "../shared/loading/loading.component";
+import { EmptyComponent } from '../shared/empty/empty.component';
 
 @Component({
   selector: 'app-hotel',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, Toast],
+  imports: [ReactiveFormsModule, CommonModule, Toast, LoadingComponent,EmptyComponent],
   templateUrl: './hotel.component.html',
   styleUrl: './hotel.component.css',
   providers: [MessageService]

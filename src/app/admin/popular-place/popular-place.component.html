@@ -1,1 +1,134 @@
-<p>popular-place works!</p>
+<section id="PopularPlaces">
+  <p-toast />
+  <div class="container col-md-8">
+    <div class="d-flex justify-content-between my-2">
+      <h2>Popular Places</h2>
+      <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#PopularPlaceModal"
+        (click)="openAddModal()">Add
+        Popular Place
+      </button>
+    </div>
+    <div class="card border border-0 shadow p-4 table-responsive">
+      @if (isFetching()) {
+      <app-loading />
+      }
+      @else {
+      <table class="table text-center table-hover table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th colspan="2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of PopularPlaces(); track $index) {
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ item.title }}</td>
+            <td>
+              <button class="btn text-danger fs-5" title="delete" (click)="deletePopularPlace(item.id)"><i
+                  class="fa-solid fa-trash"></i></button>
+            </td>
+            <td>
+              <button class="btn text-warning fs-5" title="edit" data-bs-toggle="modal"
+                data-bs-target="#PopularPlaceModal" (click)="openUpdateModal(item)">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            </td>
+          </tr>
+          }
+          @empty {
+          <tr>
+            <th colspan="4">
+              <app-empty />
+            </th>
+          </tr> }
+        </tbody>
+      </table>
+      }
+    </div>
+  </div>
+</section>
+<div class="modal fade" id="PopularPlaceModal" tabindex="-1" aria-labelledby="PopularPlaceModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>{{ modalTitle() }}</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addPopularPlaceForm">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="title">Title :</label>
+                <input name="title" id="title" type="text"
+                  [ngClass]="{'is-invalid': addPopularPlaceForm.controls.title.touched && addPopularPlaceForm.controls.title.invalid}"
+                  formControlName="title" class="form-control my-2">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="best_season_to_visit">Best Season To Visit :</label>
+                <input name="best_season_to_visit" id="best_season_to_visit" type="string"
+                  [ngClass]="{'is-invalid': addPopularPlaceForm.controls.best_season_to_visit.touched && addPopularPlaceForm.controls.best_season_to_visit.invalid}"
+                  formControlName="best_season_to_visit" class="form-control my-2">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="price_of_ticket">Price Of Ticket :</label>
+                <input name="price_of_ticket" id="price_of_ticket" type="number"
+                  [ngClass]="{'is-invalid': addPopularPlaceForm.controls.price_of_ticket.touched && addPopularPlaceForm.controls.price_of_ticket.invalid}"
+                  formControlName="price_of_ticket" class="form-control my-2">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="location">Location:</label>
+                <input name="location" id="location" type="string"
+                  [ngClass]="{'is-invalid': addPopularPlaceForm.controls.location.touched && addPopularPlaceForm.controls.location.invalid}"
+                  formControlName="location" class="form-control my-2">
+              </div>
+            </div>
+
+          </div>
+          <div class="row-">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="description">Description :</label>
+                <textarea name="description" id="description"
+                  [ngClass]="{'is-invalid': addPopularPlaceForm.controls.description.touched && addPopularPlaceForm.controls.description.invalid}"
+                  formControlName="description" class="form-control my-2">
+              </textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group mb-3">
+                <label for="image_cover">Image Cover :</label>
+                <input type="file" id="image" (change)="onFileSelected($event)" class="form-control"
+                  [ngClass]="{'is-invalid': addPopularPlaceForm.controls.image_cover.touched && addPopularPlaceForm.controls.image_cover.invalid}">
+                <div *ngIf="PopularPlaceImage()" class="image_cover-container mt-2">
+                  <img src="http://localhost:8000{{ PopularPlaceImage() }}" alt="PopularPlace Image Cover" width="100"
+                    height="100" [ngClass]="{'image_cover-warning': showImageWarning()}">
+                  <span class="text-danger px-2 fs-6">** Choice Same Image Or Replaced It</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn close" data-bs-dismiss="modal" id="closeModalButton">Close</button>
+        <button type="button" class="btn save" [disabled]="addPopularPlaceForm.invalid" (click)="savePopularPlace()"> {{
+          modalButton()
+          }}</button>
+      </div>
+    </div>
+  </div>
+</div>

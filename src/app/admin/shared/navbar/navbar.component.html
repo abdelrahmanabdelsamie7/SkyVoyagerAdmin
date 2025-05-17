@@ -1,7 +1,7 @@
 <header id="header" class="header position-relative">
   <div class="container-fluid container-xl position-relative">
     <div class="top-row d-flex align-items-center justify-content-between">
-      <a routerLink="/" class="logo d-flex align-items-end">
+      <a routerLink="/dashboard/welcome" class="logo d-flex align-items-end">
         <h1 class="sitename">Sky Voyager Admin</h1><span>.</span>
       </a>
       <button class="mobile-nav-toggle fa-solid fa-bars" (click)="toggleNav()"></button>
@@ -11,12 +11,14 @@
     <div class="container d-flex justify-content-center position-relative">
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a routerLink="/dashboard/offers" routerLinkActive="active">Offers</a></li>
-          <li><a routerLink="/dashboard/hotels" routerLinkActive="active">Hotels</a></li>
-          <li><a routerLink="/dashboard/popular-places" routerLinkActive="active">Popular Places</a></li>
-          <li><a routerLink="/dashboard/ideas" routerLinkActive="active">Flight Schedules</a></li>
+          <li><a routerLink="/dashboard/offers" (click)="closeNav()" routerLinkActive="active">Offers</a></li>
+          <li><a routerLink="/dashboard/hotels" (click)="closeNav()" routerLinkActive="active">Hotels</a></li>
+          <li><a routerLink="/dashboard/popular-places" (click)="closeNav()" routerLinkActive="active">Popular
+              Places</a></li>
+          <li><a routerLink="/dashboard/flight-schedules" (click)="closeNav()" routerLinkActive="active">Flight
+              Schedules</a></li>
           <li class="logout">
-            <button class="btn logout">Logout</button>
+            <button class="btn logout" (click)="logout()">Logout</button>
           </li>
         </ul>
       </nav>

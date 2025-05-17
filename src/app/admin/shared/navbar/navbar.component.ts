@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Renderer2, HostListener } from '@angular/core';
+import { Component, HostListener, Inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -10,16 +10,26 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  @HostListener('window:resize', ['$event'])
-  isActive = false;
+  isActive: boolean = false;
+
+  constructor(private _Router: Router) { }
+
+  @HostListener('window:resize')
+  onResize() {
+    if (window.innerWidth > 991) {
+      this.isActive = false;
+    }
+  }
 
   toggleNav() {
     this.isActive = !this.isActive;
   }
 
-  onResize() {
-    if (window.innerWidth > 991) {
-      this.isActive = false;
-    }
+  closeNav() {
+    this.isActive = false;
+  }
+  logout() {
+    localStorage.removeItem('adminSkyVoyager');
+    this._Router.navigateByUrl('/login');
   }
 }

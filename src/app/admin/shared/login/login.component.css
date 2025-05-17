@@ -14,7 +14,9 @@ section p {
   font-size: 14px;
   color: var(--default-color);
 }
-
+section .card .card-image img{
+  height: 250px;
+}
 section button.btn {
   background-color: var(--heading-color);
   color: var(--surface-color);

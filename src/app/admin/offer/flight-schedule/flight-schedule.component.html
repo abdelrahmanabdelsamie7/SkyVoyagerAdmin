@@ -1,0 +1,131 @@
+<section id="FlightSchedules">
+  <p-toast />
+  <div class="container col-md-8">
+    <div class="d-flex justify-content-between my-2">
+      <h2>Flight Schedules</h2>
+      <button class="btn btn-add" data-bs-toggle="modal" data-bs-target="#FlightScheduleModal"
+        (click)="openAddModal()">Add
+        Flight Schedule
+      </button>
+    </div>
+    <div class="card border border-0 shadow p-4 table-responsive">
+      @if (isFetching()) {
+      <app-loading />
+      }
+      @else {
+      <table class="table text-center table-hover table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Departure City</th>
+            <th>Arrival City</th>
+            <th colspan="2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of FlightSchedules(); track $index) {
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ item.departure_city }}</td>
+            <td>{{ item.arrival_city }}</td>
+            <td>
+              <button class="btn text-danger fs-5" title="delete" (click)="deleteFlightSchedule(item.id)"><i
+                  class="fa-solid fa-trash"></i></button>
+            </td>
+            <td>
+              <button class="btn text-warning fs-5" title="edit" data-bs-toggle="modal"
+                data-bs-target="#FlightScheduleModal" (click)="openUpdateModal(item)">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            </td>
+          </tr>
+          }
+          @empty {
+          <tr>
+            <th colspan="4">
+              <app-empty />
+            </th>
+          </tr> }
+        </tbody>
+      </table>
+      }
+    </div>
+  </div>
+</section>
+<div class="modal fade" id="FlightScheduleModal" tabindex="-1" aria-labelledby="FlightScheduleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>{{ modalTitle() }}</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addFlightScheduleForm">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="departure_city">Departure City :</label>
+                <input name="departure_city" id="departure_city" type="text"
+                  [ngClass]="{'is-invalid': addFlightScheduleForm.controls.departure_city.touched && addFlightScheduleForm.controls.departure_city.invalid}"
+                  formControlName="departure_city" class="form-control my-2">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="arrival_city">Arrival City :</label>
+                <input name="arrival_city" id="arrival_city" type="string"
+                  [ngClass]="{'is-invalid': addFlightScheduleForm.controls.arrival_city.touched && addFlightScheduleForm.controls.arrival_city.invalid}"
+                  formControlName="arrival_city" class="form-control my-2">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="departure_time">Departure Time:</label>
+                <input name="departure_time" id="departure_time" type="time"
+                  [ngClass]="{'is-invalid': addFlightScheduleForm.controls.departure_time.touched && addFlightScheduleForm.controls.departure_time.invalid}"
+                  formControlName="departure_time" class="form-control my-2">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="arrival_time">Arrival Time :</label>
+                <input name="arrival_time" id="arrival_time" type="time"
+                  [ngClass]="{'is-invalid': addFlightScheduleForm.controls.arrival_time.touched && addFlightScheduleForm.controls.arrival_time.invalid}"
+                  formControlName="arrival_time" class="form-control my-2">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label for="price_multiplier">Price Multiplier * :</label>
+                <input name="price_multiplier" id="price_multiplier" type="number"
+                  [ngClass]="{'is-invalid': addFlightScheduleForm.controls.price_multiplier.touched && addFlightScheduleForm.controls.price_multiplier.invalid}"
+                  formControlName="price_multiplier" class="form-control my-2">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label for="offer_id">Offer :</label>
+                <select name="offer_id" id="offer_id"
+                  [ngClass]="{'is-invalid': addFlightScheduleForm.controls.offer_id.touched && addFlightScheduleForm.controls.offer_id.invalid}"
+                  formControlName="offer_id" class="form-control my-2">
+                  @for (item of Offers(); track $index) {
+                  <option value="{{ item.id }}">{{ item.title }}</option>
+                  }
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn close" data-bs-dismiss="modal" id="closeModalButton">Close</button>
+        <button type="button" class="btn save" (click)="saveFlightSchedule()"> {{ modalButton()
+          }}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,11 +5,13 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { OfferService } from '../../core/services/offer.service';
 import { CommonModule } from '@angular/common';
 import { Toast } from 'primeng/toast';
+import { LoadingComponent } from "../shared/loading/loading.component";
+import { EmptyComponent } from "../shared/empty/empty.component";
 
 @Component({
   selector: 'app-offer',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, Toast],
+  imports: [ReactiveFormsModule, CommonModule, Toast, LoadingComponent, EmptyComponent],
   templateUrl: './offer.component.html',
   styleUrl: './offer.component.css',
   providers: [MessageService]
