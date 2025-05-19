@@ -1,15 +1,12 @@
 
 section {
   min-height: 100vh;
-  font-family: var(--heading-font);
 }
-
 section h5.card-title {
   color: var(--heading-color);
   font-weight: 650;
   font-size: 28px;
 }
-
 section p {
   font-size: 14px;
   color: var(--default-color);
@@ -20,12 +17,4 @@ section .card .card-image img{
 section button.btn {
   background-color: var(--heading-color);
   color: var(--surface-color);
-}
-
-p-toast {
-  direction: rtl;
-  color: var(--heading-color) !important;
-  font-weight: 500;
-  font-family: var(--heading-font);
-  font-size: 18px;
 }

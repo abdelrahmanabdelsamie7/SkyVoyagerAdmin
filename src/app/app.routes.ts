@@ -8,6 +8,9 @@ import { FlightScheduleComponent } from './admin/offer/flight-schedule/flight-sc
 import { WelcomeComponent } from './admin/shared/welcome/welcome.component';
 import { adminGuard } from './core/guards/admin.guard';
 import { LoginComponent } from './admin/shared/login/login.component';
+import { ShowOfferComponent } from './admin/offer/show-offer/show-offer.component';
+import { BookingHotelsComponent } from './admin/bookins/booking-hotels/booking-hotels.component';
+import { BookingOffersComponent } from './admin/bookins/booking-offers/booking-offers.component';
 
 export const routes: Routes = [
 
@@ -22,9 +25,12 @@ export const routes: Routes = [
     children: [
       { path: 'welcome', component: WelcomeComponent, title: 'Admin | Welcome Page' },
       { path: 'offers', component: OfferComponent, title: 'Admin | Offers' },
+      { path: 'offer-details/:id', component: ShowOfferComponent, title: 'Admin | Offer Detasils' },
       { path: 'hotels', component: HotelComponent, title: 'Admin | Hotels' },
       { path: 'popular-places', component: PopularPlaceComponent, title: 'Admin | Popular Places' },
       { path: 'flight-schedules', component: FlightScheduleComponent, title: 'Admin | Flight Schedules' },
+      { path: 'booking-hotels', component: BookingHotelsComponent, title: 'Admin | Booking Hotels' },
+      { path: 'booking-offers', component: BookingOffersComponent, title: 'Admin | Booking Offer' },
     ]
   },
 

@@ -1,0 +1,55 @@
+<section id="bookingOffers">
+  <div class="container">
+    <h1 class="my-1">Booking Offers</h1>
+    <p class="text-center">Here you can manage your hotel bookings.</p>
+    <div class="row g-4">
+      @if(isFetching()) {
+      <div class="mt-5">
+        <app-loading />
+      </div>
+      }
+      @else{
+      @for (item of BookingsOffer(); track $index)
+      {
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 rounded-3 h-100 shadow-sm">
+          <div class="card-image">
+            <img src="http://192.168.1.4:8000{{ item.offer.image_cover }}" loading="lazy" alt="{{ item.offer.title }}"
+              class="img-fluid card-img-top rounded-top-3" style="height: 200px; object-fit: cover;">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ item.offer.title }}</h5>
+            <p><strong>User Name:</strong> {{ item.user.name }}</p>
+            <p><strong>User Email:</strong> {{ item.user.email }}</p>
+            <p><strong>City:</strong> {{ item.offer.city }}</p>
+            <p><strong>From:</strong> {{ item.offer.from_date }}</p>
+            <p><strong>To:</strong> {{ item.offer.to_date }}</p>
+            <p><strong>Price Per Ticket:</strong> {{ item.offer.price_per_ticket | currency:'EGP' }}</p>
+            <p><strong>Number of Tickets:</strong> {{ item.num_of_tickets }}</p>
+            <p><strong>Total Price:</strong> {{ item.total_price | currency:'EGP'}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <strong>Departure City:</strong> {{ item.schedule.departure_city }}
+            </li>
+            <li class="list-group-item">
+              <strong>Arrival City:</strong> {{ item.schedule.arrival_city }}
+            </li>
+            <li class="list-group-item">
+              <strong>Departure Time:</strong> {{ item.schedule.departure_time }}
+            </li>
+            <li class="list-group-item">
+              <strong>Arrival Time:</strong> {{ item.schedule.arrival_time }}
+            </li>
+            <li class="list-group-item">
+              <strong>Calculated Price:</strong> ${{ item.schedule.calculated_price }}
+            </li>
+          </ul>
+        </div>
+      </div> } @empty {
+      <app-empty />
+      }
+      }
+    </div>
+  </div>
+</section>

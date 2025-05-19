@@ -1,3 +1,5 @@
+import { Offer } from "./offer";
+
 export interface FlightSchedule {
   id: string;
   offer_id: string;
@@ -6,4 +8,6 @@ export interface FlightSchedule {
   arrival_city: string;
   arrival_time: string;
   price_multiplier: number;
+  calculated_price: number;
+  offer ?: Offer
 }

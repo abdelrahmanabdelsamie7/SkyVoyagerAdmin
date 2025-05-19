@@ -12,15 +12,15 @@ export class HotelService {
     return this._HttpClient.get<Hotel[]>(`${environment.baseUrl}/hotels`);
   }
   addHotel(hotel: FormData): Observable<Hotel> {
-    return this._HttpClient.post<Hotel>(`${environment.baseUrl}/hotels`, hotel);
+    return this._HttpClient.post<Hotel>(`${environment.baseUrl}/hotels`, hotel, { headers: { Authorization: 'Bearer ' + localStorage.getItem('adminSkyVoyager') } });
   }
   showHotel(id: string): Observable<Hotel> {
     return this._HttpClient.get<Hotel>(`${environment.baseUrl}/hotels/${id}`);
   }
   editHotel(id: string, hotel: FormData): Observable<Hotel[]> {
-    return this._HttpClient.post<Hotel[]>(`${environment.baseUrl}/hotels/${id}`, hotel);
+    return this._HttpClient.post<Hotel[]>(`${environment.baseUrl}/hotels/${id}`, hotel, { headers: { Authorization: 'Bearer ' + localStorage.getItem('adminSkyVoyager') } });
   }
   deleteHotel(id: string): Observable<Hotel> {
-    return this._HttpClient.delete<Hotel>(`${environment.baseUrl}/hotels/${id}`);
+    return this._HttpClient.delete<Hotel>(`${environment.baseUrl}/hotels/${id}`, { headers: { Authorization: 'Bearer ' + localStorage.getItem('adminSkyVoyager') } });
   }
 }

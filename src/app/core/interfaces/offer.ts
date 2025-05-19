@@ -1,3 +1,5 @@
+import { FlightSchedule } from './flight-schedule';
+import { OfferImage } from './offer-image';
 export interface Offer {
   id: string;
   title: string;
@@ -11,4 +13,6 @@ export interface Offer {
   terms_and_conditions: string;
   created_at: string;
   updated_at: string;
+  flight_schedules ?: FlightSchedule[] ;
+  images ?: OfferImage[]
 }

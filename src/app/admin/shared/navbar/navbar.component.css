@@ -59,3 +59,29 @@
     margin-left: 10px;
   }
 }
+
+.dropdown-menu li a {
+  font-size: 16px;
+  padding: 10px;
+}
+
+.navmenu .dropdown-menu {
+  display: none
+}
+
+.navmenu .dropdown-menu.show {
+  display: block;
+}
+
+.navmenu .dropdown-menu.show li a {
+  color: var(--heading-color)  !important;
+}
+
+.dropdown-item.active .dropdown-menu.show li a{
+  background-color: var(--default-color);
+  color: var(--surface-color)  ;
+}
+
+.navmenu .dropdown.show>.dropdown-menu {
+  display: block;
+}

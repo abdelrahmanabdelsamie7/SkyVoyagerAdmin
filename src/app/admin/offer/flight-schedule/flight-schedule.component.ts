@@ -28,7 +28,9 @@ export class FlightScheduleComponent implements OnInit {
     departure_time: '',
     arrival_city: '',
     arrival_time: '',
-    price_multiplier: 0
+    price_multiplier: 0,
+    calculated_price: 0,
+    offer : undefined
   });
   selectedFlightSchedule: FlightSchedule | null = null;
   modalTitle = signal<string>('Add Flight Schedule');
@@ -122,7 +124,7 @@ export class FlightScheduleComponent implements OnInit {
           this.closeModal();
         },
         error: (err) => {
-          console.log(err);
+          (err);
 
           if (err.error.message == 'The image field is required.') {
             this._MessageService.add({ severity: 'error', summary: 'Something Error', detail: 'You Should Add Image Cover Again', life: 1500 });

@@ -1,0 +1,111 @@
+<section id="showOffer">
+  <p-toast />
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 d-flex flex-column justify-content-center">
+        <div class="card">
+          <div class="card-image">
+            <img src="http://192.168.1.4:8000{{ offer().image_cover }}" lazyloading alt="Offer Image Cover"
+              class="img-fluid card-img-top rounded">
+          </div>
+          <div id="numOfTickets">
+            <h6>Number Of Tickets : <span>{{ offer().num_of_tickets }}</span></h6>
+            <h6>Price Of Ticket : <span>{{ offer().price_per_ticket | currency:'EGP'}}</span></h6>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-8">
+        <h2>{{ offer().title }}</h2>
+        <h6>From : <span>{{ offer().from_date }}</span> To : <span>{{ offer().to_date }}</span></h6>
+        <h5 style="white-space: pre-line; font-size: 16px; line-height: 1.6;padding-left:20px">{{ offer().description }}
+        </h5>
+      </div>
+    </div>
+
+    <div class="row py-2">
+      <hr />
+      <div>
+        <button class="addImage btn my-2" data-bs-toggle="modal" data-bs-target="#offerModal">Add
+          Image To {{ offer().title }} Offer</button>
+      </div>
+      @for (item of offerImages(); track $index) {
+      <div class="col-md-2">
+        <div class="card border border-0">
+          <div class="card-image">
+            <img src="http://192.168.1.4:8000{{ item.image }}" lazyloading alt="Offer Image Cover"
+              class="img-fluid card-img-top rounded">
+          </div>
+          <div class="card-body">
+            <button class="btn btn-danger d-block mx-auto" (click)="deleteOfferImage(item.id)">Delete Image</button>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    <div class="row p-2 table-responsive">
+      <hr />
+      <table class="table table-hover">
+        <tr>
+          <th>Departure City</th>
+          <th>Arrival City</th>
+          <th>Departure Time</th>
+          <th>Arrival Time</th>
+          <th>Price Of Ticket</th>
+        </tr>
+        <tbody>
+          @for (item of offer().flight_schedules; track $index) {
+          <tr>
+            <td>{{ item.departure_city }}</td>
+            <td>{{ item.arrival_city }}</td>
+            <td>{{ item.departure_time }}</td>
+            <td>{{ item.arrival_time }}</td>
+            <td>{{ item.calculated_price}} After {{ item.price_multiplier }}</td>
+          </tr>
+          }@empty {
+          <tr>
+            <td colspan="5">
+              <app-empty />
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<div class="modal fade" id="offerModal" tabindex="-1" aria-labelledby="offerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Add Image</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addOfferImages">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group mb-3">
+                <div class="mb-3">
+                  <label for="image" class="form-label">Image</label>
+                  <input type="file" id="image" class="form-control" (change)="onFileSelectedForImages($event)"
+                    multiple>
+                </div>
+                <div *ngIf="selectedFiles.length > 0" class="mt-2 text-start">
+                  <p><strong>Choiced Images :</strong></p>
+                  <ul class="list-unstyled">
+                    <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn close" data-bs-dismiss="modal" id="closeModalButton">Close</button>
+        <button type="button" class="btn save" [disabled]="addOfferImages.invalid"
+          (click)="addOfferImage()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<section id="bookingHotels">
+  <div class="container">
+    <h1 class="my-1">Booking Hotels</h1>
+    <p class="text-center">Here you can manage your hotel bookings.</p>
+    <div class="row g-4">
+      @if(isFetching()){
+      <div class="mt-5">
+        <app-loading />
+      </div>
+      }@else{
+      @for (item of BookingsHotel(); track $index) {
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 rounded-3 h-100 shadow-sm">
+          <div class="card-image">
+            <img src="http://192.168.1.4:8000{{ item.hotel.image_cover }}" lazyloading alt="Offer Image Cover"
+              class="img-fluid card-img-top rounded-top-3" style="height: 200px; object-fit: cover;">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ item.hotel.title }}</h5>
+            <p><strong>Location:</strong> {{ item.hotel.location }}</p>
+            <p><strong>User Name:</strong> {{ item.user.name }}</p>
+            <p><strong>User Email:</strong> {{ item.user.email }}</p>
+            <p><strong>Check-In:</strong> {{ item.check_in_date }}</p>
+            <p><strong>Check-Out:</strong> {{ item.check_out_date }}</p>
+            <p><strong>Nights:</strong> {{ item.number_of_nights }}</p>
+            <p><strong>Total Price:</strong> {{ item.total_price | currency:'EGP'}}</p>
+            <p><strong>Beds:</strong> {{ item.num_of_beds }}</p>
+          </div>
+        </div>
+      </div>
+      }@empty {
+      <app-empty />
+      }
+      }
+    </div>
+  </div>
+</section>

@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { Toast } from 'primeng/toast';
 import { LoadingComponent } from "../shared/loading/loading.component";
 import { EmptyComponent } from "../shared/empty/empty.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-offer',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, Toast, LoadingComponent, EmptyComponent],
+  imports: [ReactiveFormsModule, CommonModule, Toast, LoadingComponent, EmptyComponent, RouterModule],
   templateUrl: './offer.component.html',
   styleUrl: './offer.component.css',
   providers: [MessageService]
@@ -30,7 +31,9 @@ export class OfferComponent implements OnInit {
     price_per_ticket: 0,
     description: '',
     terms_and_conditions: '',
-    created_at: ''
+    created_at: '' ,
+    flight_schedules: undefined ,
+    images : undefined
   });
   selectedOffer: Offer | null = null;
   modalTitle = signal<string>('Add Offer');
@@ -51,10 +54,6 @@ export class OfferComponent implements OnInit {
     terms_and_conditions: new FormControl('', [Validators.required])
   });
 
-  addOfferImages = new FormGroup({
-    Offer_id: new FormControl('', Validators.required),
-    image_cover: new FormControl<File[] | null>(null)
-  });
   selectedOfferId: string | null = null;
   selectedFiles: File[] = [];
 

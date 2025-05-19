@@ -145,7 +145,7 @@ export class HotelComponent implements OnInit {
         },
         error: (err) => {
 
-          console.log(err);
+          (err);
           if (err.error.message == 'The image field is required.') {
             this._MessageService.add({ severity: 'error', summary: 'Something Error', detail: 'You Should Add Image Cover Again', life: 1500 });
           } else {

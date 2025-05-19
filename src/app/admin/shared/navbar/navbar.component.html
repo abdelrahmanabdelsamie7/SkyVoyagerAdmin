@@ -17,6 +17,17 @@
               Places</a></li>
           <li><a routerLink="/dashboard/flight-schedules" (click)="closeNav()" routerLinkActive="active">Flight
               Schedules</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Booking
+            </a>
+            <ul class="dropdown-menu" [class.show]="isDropdownOpen">
+              <li><a class="dropdown-item" routerLink="/dashboard/booking-hotels" (click)="closeDropdown()"
+                  routerLinkActive="active">Hotels</a></li>
+              <li><a class="dropdown-item" routerLink="/dashboard/booking-offers" (click)="closeDropdown()"
+                  routerLinkActive="active">Offers</a></li>
+            </ul>
+          </li>
           <li class="logout">
             <button class="btn logout" (click)="logout()">Logout</button>
           </li>

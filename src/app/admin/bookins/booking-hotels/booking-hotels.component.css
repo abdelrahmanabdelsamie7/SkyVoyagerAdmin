@@ -1,0 +1,18 @@
+h1,
+.card-title {
+  color: var(--accent-color);
+  text-align: center;
+  font-weight: 650;
+}
+
+p {
+  color: var(--heading-color);
+}
+
+.card-body p {
+  margin: 8px 0px;
+}
+
+.card-body p strong {
+  color: var(--heading-color);
+}

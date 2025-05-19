@@ -3,11 +3,12 @@ h2 {
   font-weight: 700;
   text-align: center;
 }
-
 h2 span {
   color: var(--accent-color);
 }
-
+img {
+  width: 600px;
+}
 @media screen and (max-width:576px) {
   img {
     width: 500px;

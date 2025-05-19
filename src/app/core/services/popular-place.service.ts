@@ -8,21 +8,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PopularPlaceService {
-
   constructor(private _HttpClient: HttpClient) { }
   listPopularPlaces(): Observable<PopularPlace[]> {
     return this._HttpClient.get<PopularPlace[]>(`${environment.baseUrl}/popular-places`);
   }
   addPopularPlace(popularPlace: FormData): Observable<PopularPlace> {
-    return this._HttpClient.post<PopularPlace>(`${environment.baseUrl}/popular-places`, popularPlace);
+    return this._HttpClient.post<PopularPlace>(`${environment.baseUrl}/popular-places`, popularPlace, { headers: { Authorization: 'Bearer ' + localStorage.getItem('adminSkyVoyager') } });
   }
   showPopularPlace(id: string): Observable<PopularPlace> {
     return this._HttpClient.get<PopularPlace>(`${environment.baseUrl}/popular-places/${id}`);
   }
   editPopularPlace(id: string, popularPlace: FormData): Observable<PopularPlace> {
-    return this._HttpClient.post<PopularPlace>(`${environment.baseUrl}/popular-places/${id}`, popularPlace);
+    return this._HttpClient.post<PopularPlace>(`${environment.baseUrl}/popular-places/${id}`, popularPlace, { headers: { Authorization: 'Bearer ' + localStorage.getItem('adminSkyVoyager') } });
   }
   deletePopularPlace(id: string): Observable<PopularPlace> {
-    return this._HttpClient.delete<PopularPlace>(`${environment.baseUrl}/popular-places/${id}`);
+    return this._HttpClient.delete<PopularPlace>(`${environment.baseUrl}/popular-places/${id}`, { headers: { Authorization: 'Bearer ' + localStorage.getItem('adminSkyVoyager') } });
   }
 }

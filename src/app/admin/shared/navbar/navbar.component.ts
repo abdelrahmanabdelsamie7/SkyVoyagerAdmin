@@ -11,12 +11,12 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class NavbarComponent {
   isActive: boolean = false;
-
+  isDropdownOpen = false;
   constructor(private _Router: Router) { }
 
   @HostListener('window:resize')
   onResize() {
-    if (window.innerWidth > 991) {
+    if ( window.innerWidth > 991) {
       this.isActive = false;
     }
   }
@@ -31,5 +31,15 @@ export class NavbarComponent {
   logout() {
     localStorage.removeItem('adminSkyVoyager');
     this._Router.navigateByUrl('/login');
+  }
+
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  closeDropdown() {
+    this.isDropdownOpen = false;
+    this.isActive = false;
   }
 }
